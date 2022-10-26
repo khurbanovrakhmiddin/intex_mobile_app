@@ -1,0 +1,1 @@
+import 'package:intex_mobile_app/core/models/Contacts.dart';class GetData{  late Contacts contacts;Future<Contacts> getContacts()async=>contacts = await  getContacts();get contact => contacts;}
