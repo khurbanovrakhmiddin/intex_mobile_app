@@ -12,11 +12,11 @@ void main()async {
 
 
   runApp( EasyLocalization(
-      supportedLocales: [Locale('en', 'US'), Locale('ru', 'RU'),
+      supportedLocales: const [Locale('en', 'US'), Locale('ru', 'RU'),
         Locale('uz', 'UZ')],
       path: 'assets/translations', // <-- change the path of the translation files
-      fallbackLocale: Locale('ru', 'RU'),
-      child: MyApp()
+      fallbackLocale: const Locale('ru', 'RU'),
+      child: const MyApp()
   ));
 }
 
@@ -27,12 +27,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return  MaterialApp(
+      
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: light,
-      home: const MainPage(),
+      builder: (context,_){
+
+        return MediaQuery(data: MediaQuery.of(context).copyWith(
+            textScaleFactor: 1,
+            boldText: false,
+        ),
+        child: const MainPage(),);
+      },
+      home:const MainPage(),
     );
   }
 }
