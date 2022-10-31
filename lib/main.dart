@@ -4,12 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:intex_mobile_app/core/constants/theme.dart';
 import 'package:intex_mobile_app/features/screens/main_page/view/main_page.dart';
 
-import 'features/screens/detail_page/view/cart_view.dart';
+
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-
 
   runApp( EasyLocalization(
       supportedLocales: const [Locale('en', 'US'), Locale('ru', 'RU'),
@@ -33,13 +32,12 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       theme: light,
-      builder: (context,_){
-
+      builder: (context,child){
         return MediaQuery(data: MediaQuery.of(context).copyWith(
             textScaleFactor: 1,
             boldText: false,
         ),
-        child: const MainPage(),);
+          child: child!);
       },
       home:const MainPage(),
     );
