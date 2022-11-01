@@ -17,6 +17,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   easy_localization: ^3.0.1
 
+
   #state Managment
   equatable: ^2.0.5
   flutter_bloc: ^8.1.1
@@ -48,6 +49,7 @@ dependencies:
 
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -62,6 +64,8 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/translations/
+    - assets/lottie/
+
 
 
   # example:
