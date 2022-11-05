@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intex_mobile_app/core/constants/theme.dart';
 import 'package:intex_mobile_app/features/screens/main_page/view/main_page.dart';
 
