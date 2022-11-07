@@ -1,1 +1,1 @@
-import 'package:equatable/equatable.dart';import 'package:intex_mobile_app/core/models/Catalog.dart';class Order extends Equatable {  const Order({this.items = const <Catalog>[]});  final List<Catalog> items;  @override  List<Object> get props => [items];}
+import 'package:equatable/equatable.dart';import 'package:intex_mobile_app/core/models/Catalog_model.dart';import 'Catalog_model.dart';class Order extends Equatable {  const Order({this.items = const <Catalog>[]});  final List<Catalog> items;  @override  List<Object> get props => [items];}

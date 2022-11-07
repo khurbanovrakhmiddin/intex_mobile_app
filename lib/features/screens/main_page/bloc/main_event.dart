@@ -1,0 +1,1 @@
+part of 'main_bloc.dart';abstract class MainEvent extends Equatable {  const MainEvent();}class MainLoadingEvent extends MainEvent{  @override  List<Object?> get props => [];}class MainGetEvent extends MainEvent{  @override  List<Object?> get props => [];}

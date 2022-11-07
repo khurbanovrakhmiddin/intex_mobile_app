@@ -1,6 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intex_mobile_app/core/constants/theme.dart';
+import 'package:intex_mobile_app/core/repository/catalog_repository.dart';
+import 'package:intex_mobile_app/features/screens/main_page/bloc/main_bloc.dart';
 import 'package:intex_mobile_app/features/screens/main_page/view/main_page.dart';
 
 
@@ -23,9 +26,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+context.setLocale(Locale('ru', 'RU'));
     return  MaterialApp(
-      
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
@@ -38,7 +40,9 @@ class MyApp extends StatelessWidget {
         ),
           child: child!);
       },
-      home:const MainPage(),
+      home:BlocProvider(create: (context)=>MainBloc(Repository()),
+    child:
+    const MainPage(),),
     );
   }
 }
