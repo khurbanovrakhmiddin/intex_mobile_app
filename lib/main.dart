@@ -12,6 +12,12 @@ void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
+
+
+
+
+
+
   runApp( EasyLocalization(
       supportedLocales: const [Locale('en', 'US'), Locale('ru', 'RU'),
         Locale('uz', 'UZ')],
@@ -26,7 +32,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-context.setLocale(Locale('ru', 'RU'));
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
