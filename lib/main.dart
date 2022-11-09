@@ -5,6 +5,7 @@ import 'package:intex_mobile_app/core/constants/theme.dart';
 import 'package:intex_mobile_app/core/repository/catalog_repository.dart';
 import 'package:intex_mobile_app/core/repository/sites_repository.dart';
 import 'package:intex_mobile_app/core/service/db_service.dart';
+import 'package:intex_mobile_app/core/service/observ_service.dart';
 import 'package:intex_mobile_app/features/screens/main_page/bloc/main_bloc.dart';
 import 'package:intex_mobile_app/features/screens/main_page/view/main_page.dart';
 
@@ -22,6 +23,8 @@ void main()async {
   await GetContacts.getContacts();
   await GetLinks.getSocial();
   await GetCategories.getCategories();
+
+  Bloc.observer = SimpleBlocObserver();
 
 
   runApp( EasyLocalization(
