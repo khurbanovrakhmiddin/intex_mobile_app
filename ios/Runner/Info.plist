@@ -2,8 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<key>LSApplicationQueriesSchemes</key>
+<array>
+  <string>tel</string>
+</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string></string>
+	</array>
 	<key>CFBundleDisplayName</key>
 	<string>Intex Mobile App</string>
 	<key>CFBundleExecutable</key>
@@ -35,11 +43,12 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>CFBundleLocalizations</key>
-    <array>
-    	<string>ru</string>
-    	<string>uz</string>
-    	<string>en</string>
-    </array>
+	<array>
+		<string>ru</string>
+		<string>uz</string>
+		<string>en</string>
+	</array>
+
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
