@@ -9,8 +9,9 @@ import 'package:intex_mobile_app/core/service/observ_service.dart';
 import 'package:intex_mobile_app/features/screens/main_page/bloc/main_bloc.dart';
 import 'package:intex_mobile_app/features/screens/main_page/view/main_page.dart';
 
-import 'core/constants/contacts.dart';
+import 'core/models/Category.dart';
 import 'core/models/Contacts.dart';
+import 'features/screens/cart_page/bloc/cart_bloc.dart';
 
 
 
@@ -24,6 +25,10 @@ void main()async {
   await GetLinks.getSocial();
   await GetCategories.getCategories();
 
+
+ Contacts contacts = GetContacts.contacts();
+  final     List<Category> category = GetCategories.categories();
+
   Bloc.observer = SimpleBlocObserver();
 
 
@@ -32,12 +37,15 @@ void main()async {
         Locale('uz', 'UZ')],
       path: 'assets/translations',
       fallbackLocale: const Locale('ru', 'RU'),
-      child: const MyApp()
+      child:  MyApp(contacts: contacts,category: category,)
   ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+
+  final Contacts contacts;
+  final List<Category> category;
+  const MyApp({super.key, required this.contacts, required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +64,14 @@ class MyApp extends StatelessWidget {
         ),
           child: child!);
       },
-      home:BlocProvider(create: (context)=>MainBloc(Repository()),
-    child:
-    const MainPage(),),
+      home:MultiBlocProvider(providers: [
+        BlocProvider(create: (context)=>CartBloc()),
+        BlocProvider(create: (context)=>MainBloc(repository:Repository(),category: category,contacts: contacts),
+          child: const MainPage(),),
+
+      ],
+        child: MainPage(),
+    ),
     );
   }
 }
