@@ -6,6 +6,8 @@ import 'package:intex_mobile_app/core/repository/catalog_repository.dart';
 import 'package:intex_mobile_app/core/repository/sites_repository.dart';
 import 'package:intex_mobile_app/core/service/db_service.dart';
 import 'package:intex_mobile_app/core/service/observ_service.dart';
+import 'package:intex_mobile_app/features/screens/conect_page/bloc/connect_bloc.dart';
+import 'package:intex_mobile_app/features/screens/conect_page/view/connect_screen.dart';
 import 'package:intex_mobile_app/features/screens/detail_page/page/detail_page.dart';
 import 'package:intex_mobile_app/features/screens/main_page/bloc/main_bloc.dart';
 import 'package:intex_mobile_app/features/screens/main_page/view/main_page.dart';
@@ -26,10 +28,6 @@ void main() async {
   } catch (e) {
     print('error: $e');
   }
-
-  Contacts contacts = GetContacts.contacts();
-  final List<Category> category = GetCategories.categories();
-
   Bloc.observer = SimpleBlocObserver();
 
   runApp(EasyLocalization(
@@ -41,21 +39,21 @@ void main() async {
       path: 'assets/translations',
       fallbackLocale: const Locale('ru', 'RU'),
       child: MyApp(
-        contacts: contacts,
-        category: category,
       )));
 }
 
 class MyApp extends StatelessWidget {
-  final Contacts contacts;
-  final List<Category> category;
+
 
   const MyApp(
-      {super.key, required this.contacts, required this.category});
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
     print('MyApp');
+
+    Contacts contacts = GetContacts.contacts();
+    final List<Category> category = GetCategories.categories();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
@@ -68,13 +66,18 @@ class MyApp extends StatelessWidget {
             textScaleFactor: 1,
             boldText: false,
           ),
-          child: BlocProvider(
-            create: (context) => MainBloc(
+          child: MultiBlocProvider(providers: [
+
+            BlocProvider(
+              create: (context) => ConnectBloc()..add(NetworkObserve()),
+
+            ),
+            BlocProvider( create: (context) => MainBloc(
                 repository: Repository(),
                 category: category,
                 contacts: contacts),
-            child: child!,
-          ),
+            ),
+          ],   child: child!,),
         );
       },
       home: MainPage(),

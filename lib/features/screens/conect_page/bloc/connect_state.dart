@@ -1,0 +1,1 @@
+part of 'connect_bloc.dart';abstract class ConnectState extends Equatable {  const ConnectState();}class NetworkInitial extends ConnectState {  @override  List<Object> get props => [];}class NetworkSuccess extends ConnectState {  @override  List<Object> get props => [];}class NetworkFailure extends ConnectState {  @override  List<Object> get props => [];}

@@ -1,0 +1,1 @@
+part of 'connect_bloc.dart';abstract class ConnectEvent extends Equatable {  const ConnectEvent();}class NetworkObserve extends ConnectEvent {  @override  List<Object?> get props => [];}class NetworkNotify extends ConnectEvent {  final bool isConnected;const  NetworkNotify({this.isConnected = false});  @override  List<Object?> get props => [isConnected];}
