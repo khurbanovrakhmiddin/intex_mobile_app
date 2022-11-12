@@ -22,9 +22,6 @@ void main() async {
   await DBService.init();
 
   try {
-    await GetContacts.getContacts();
-    await GetLinks.getSocial();
-    await GetCategories.getCategories();
   } catch (e) {
     print('error: $e');
   }
@@ -38,7 +35,7 @@ void main() async {
       ],
       path: 'assets/translations',
       fallbackLocale: const Locale('ru', 'RU'),
-      child: MyApp(
+      child: const MyApp(
       )));
 }
 
@@ -52,8 +49,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     print('MyApp');
 
-    Contacts contacts = GetContacts.contacts();
-    final List<Category> category = GetCategories.categories();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
@@ -73,9 +68,7 @@ class MyApp extends StatelessWidget {
 
             ),
             BlocProvider( create: (context) => MainBloc(
-                repository: Repository(),
-                category: category,
-                contacts: contacts),
+                repository: Repository())..add(MainInitialEvent()),
             ),
           ],   child: child!,),
         );
