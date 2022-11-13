@@ -3,18 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intex_mobile_app/core/constants/theme.dart';
 import 'package:intex_mobile_app/core/repository/catalog_repository.dart';
-import 'package:intex_mobile_app/core/repository/sites_repository.dart';
 import 'package:intex_mobile_app/core/service/db_service.dart';
 import 'package:intex_mobile_app/core/service/observ_service.dart';
 import 'package:intex_mobile_app/features/screens/conect_page/bloc/connect_bloc.dart';
-import 'package:intex_mobile_app/features/screens/conect_page/view/connect_screen.dart';
-import 'package:intex_mobile_app/features/screens/detail_page/page/detail_page.dart';
 import 'package:intex_mobile_app/features/screens/main_page/bloc/main_bloc.dart';
 import 'package:intex_mobile_app/features/screens/main_page/view/main_page.dart';
 
-import 'core/models/Category.dart';
-import 'core/models/Contacts.dart';
-import 'features/screens/cart_page/bloc/cart_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

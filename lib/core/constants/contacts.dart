@@ -1,1 +1,1 @@
-import 'package:intex_mobile_app/core/models/Contacts.dart';import 'package:intex_mobile_app/core/service/db_service.dart';class Contact{ static late  Contacts contacts;}
+// import 'package:intex_mobile_app/core/models/Contacts.dart';// import 'package:intex_mobile_app/core/service/db_service.dart';//// class Contact{//  static late  Contacts contacts;// }
