@@ -9,6 +9,9 @@ import 'package:intex_mobile_app/features/screens/conect_page/bloc/connect_bloc.
 import 'package:intex_mobile_app/features/screens/main_page/bloc/main_bloc.dart';
 import 'package:intex_mobile_app/features/screens/main_page/view/main_page.dart';
 
+import 'core/service/connect_check/check_servicde.dart';
+import 'core/service/connect_check/check_state.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,32 +46,31 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     print('MyApp');
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      theme: light,
-      builder: (context, child) {
+
+   return MaterialApp(
+     debugShowCheckedModeBanner: false,
+     localizationsDelegates: context.localizationDelegates,
+     supportedLocales: context.supportedLocales,
+     locale: context.locale,
+     theme: light,
+     builder: (context, child) {
 
 
 
-        return MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaleFactor: 1,
-            boldText: false,
-          ),
-          child: MultiBlocProvider(providers: [
-            BlocProvider(
-              create: (context) => ConnectBloc()..add(NetworkObserve()),
-            ),
-            BlocProvider( create: (context) => MainBloc(
-                repository: Repository())..add(const MainInitialEvent()),
-            ),
-          ],   child: child!,),
-        );
-      },
-      home: const MainPage(),
-    );
+       return MediaQuery(
+         data: MediaQuery.of(context).copyWith(
+           textScaleFactor: 1,
+           boldText: false,
+         ),
+         child:child!
+       );
+     },
+
+     home: const MainPage(),
+   );
+
+
+
+
   }
 }
