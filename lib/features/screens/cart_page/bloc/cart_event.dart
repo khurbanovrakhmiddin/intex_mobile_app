@@ -1,1 +1,0 @@
-part of 'cart_bloc.dart';abstract class CartEvent extends Equatable {  const CartEvent();}class SendOrderEvent extends CartEvent{  final Catalog catalog;  const SendOrderEvent(this.catalog);  @override  List<Object?> get props => [];}

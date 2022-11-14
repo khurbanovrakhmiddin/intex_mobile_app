@@ -4,9 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intex_mobile_app/core/constants/theme.dart';
 import 'package:intex_mobile_app/core/service/db_service.dart';
 import 'package:intex_mobile_app/core/service/observ_service.dart';
-import 'package:intex_mobile_app/features/screens/conect_page/view/connect_check/checker/check_state.dart';
 import 'features/app.dart';
-import 'features/screens/conect_page/view/connect_check/checker/check_servicde.dart';
 
 
 
