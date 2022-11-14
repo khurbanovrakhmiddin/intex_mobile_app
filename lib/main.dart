@@ -50,24 +50,25 @@ class MyApp extends StatelessWidget {
       locale: context.locale,
       theme: light,
       builder: (context, child) {
+
+
+
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(
             textScaleFactor: 1,
             boldText: false,
           ),
           child: MultiBlocProvider(providers: [
-
             BlocProvider(
               create: (context) => ConnectBloc()..add(NetworkObserve()),
-
             ),
             BlocProvider( create: (context) => MainBloc(
-                repository: Repository())..add(MainInitialEvent()),
+                repository: Repository())..add(const MainInitialEvent()),
             ),
           ],   child: child!,),
         );
       },
-      home: MainPage(),
+      home: const MainPage(),
     );
   }
 }

@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intex_mobile_app/core/service/network_service.dart';
 
 import 'package:intex_mobile_app/main.dart';
 
@@ -27,7 +28,13 @@ void main() {
     expect(find.text('1'), findsOneWidget);
   });
 
-  test('Network Check', (){
+  test('Network Check', ()async{
+
+   var res = await NetworkService.POST(NetworkService
+        .APi_POST_REQUEST_CALL,
+        {'name':'name','phone': '909998877'});
+
+   expect(res, null);
 
     // expect(actual, matcher);
 
