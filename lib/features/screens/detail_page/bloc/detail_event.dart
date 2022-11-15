@@ -1,0 +1,1 @@
+part of 'detail_bloc.dart';abstract class DetailEvent extends Equatable {  const DetailEvent();}class LoadingEvent extends DetailEvent{  @override  List<Object?> get props => [];}class GetItemsEvent extends DetailEvent{  @override  List<Object?> get props => [];}
