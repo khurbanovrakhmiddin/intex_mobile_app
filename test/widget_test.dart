@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intex_mobile_app/core/repository/catalog_repository.dart';
 import 'package:intex_mobile_app/core/service/network_service.dart';
 
 import 'package:intex_mobile_app/main.dart';
@@ -33,6 +34,7 @@ void main() {
    var res = await NetworkService.POST(NetworkService
         .APi_POST_REQUEST_CALL,
         {'name':'name','phone': '909998877'});
+
 
    expect(res, null);
 

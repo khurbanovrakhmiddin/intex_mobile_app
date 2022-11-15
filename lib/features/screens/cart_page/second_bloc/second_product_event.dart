@@ -1,0 +1,1 @@
+part of 'second_product_bloc.dart';abstract class SecondProductEvent extends Equatable {  const SecondProductEvent();}class ProductSecondGetByStatusEvent extends SecondProductEvent {  final int id;  const ProductSecondGetByStatusEvent(this.id);  @override  List<Object?> get props => [];}
