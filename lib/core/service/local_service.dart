@@ -1,1 +1,0 @@
-enum Lang{ru,uz,en}
