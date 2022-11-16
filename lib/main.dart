@@ -5,14 +5,8 @@ import 'package:intex_mobile_app/core/constants/theme.dart';
 import 'package:intex_mobile_app/core/repository/product_by_status_repository.dart';
 import 'package:intex_mobile_app/core/service/db_service.dart';
 import 'package:intex_mobile_app/core/service/observ_service.dart';
-import 'package:intex_mobile_app/features/screens/main_page/view/main_page.dart';
 import 'core/repository/catalog_repository.dart';
-import 'features/app.dart';
-import 'package:intex_mobile_app/core/repository/cart_repository.dart';
-import 'package:intex_mobile_app/core/utils/product_category.dart';
-import 'package:intex_mobile_app/features/screens/cart_page/bloc/products_bloc.dart';
-import 'package:intex_mobile_app/features/screens/cart_page/cart_bloc/cart_bloc.dart';
-
+import 'core/service/go_service.dart';
 import 'features/screens/cart_page/first_bloc/first_product_bloc.dart';
 import 'features/screens/cart_page/second_bloc/second_product_bloc.dart';
 import 'features/screens/cart_page/third_bloc/third_product_bloc.dart';
@@ -49,7 +43,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('MyApp');
-
       return  MultiBlocProvider(providers: [
         BlocProvider(
           create: (context) =>
@@ -66,7 +59,7 @@ class MyApp extends StatelessWidget {
             create: (context) => ThirdProductBloc(
                 ProductByStatusRepository())),
 
-      ], child: MaterialApp(
+      ], child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
@@ -81,13 +74,10 @@ class MyApp extends StatelessWidget {
               child:child!
           );
         },
-        home: const MainPage(),
-
-
+       routerConfig: GoService.router,
 
       ));
     }
-
 
 
 
