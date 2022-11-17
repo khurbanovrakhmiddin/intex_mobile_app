@@ -40,11 +40,18 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
 
   runApp(EasyLocalization(
+
+
       supportedLocales: const [
         Locale('en', 'US'),
         Locale('ru', 'RU'),
         Locale('uz', 'UZ')
       ],
+      errorWidget: (error)=>Scaffold(
+        body: Center(
+          child: Text(error.toString()),
+        ),
+      ),
       path: 'assets/translations',
       fallbackLocale: const Locale('ru', 'RU'),
       child:  MyApp()));
@@ -54,84 +61,42 @@ class MyApp extends StatelessWidget {
 
     MyApp({super.key});
       final router = GoRouter(
+        redirectLimit: 10,
+
+
      redirect: (context, state) async{
        ConnectionStatus status =await CheckInternetConnection.connect();
        var connect = status.name ==
            ConnectionStatus
                .online.name;
 
-       if (!connect) {
-       //  local = state.location.isEmpty?'/':state.location;
-         return '/connect';
-       }
+         final connection = state.subloc == '/connect';
+         if (!connect) return connection ? null : '/connect';
+         if (connection) return '/';
 
-       if (connect) {
-         return '/';
-       }
+         return null;
 
-       return null;
      },
 
      refreshListenable: ConnectionStatusValueNotifier(),
-
-
      initialLocation: '/',
      routes: [
        GoRoute(
            path: '/',
            name: 'Main',
-           pageBuilder: (context, state) {
-             return CustomTransitionPage(
-               key: state.pageKey,
-               child: const MainPage(),
-               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                 return FadeTransition(
-                   opacity:
-                   CurveTween(curve: Curves.easeInQuad).animate(animation),
-                   child: child,
-                 );
-               },
-             );
-           }),
+           builder: (context, state) =>const MainPage()),
        GoRoute(
            path: '/connect',
            name: 'NoConnect',
-           pageBuilder: (context, state) {
-
-             return CustomTransitionPage(
-               key: state.pageKey,
-               child: const OffLinePage(),
-               transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                 return FadeTransition(
-                   opacity:
-                   CurveTween(curve: Curves.easeInQuad).animate(animation),
-                   child: child,
-                 );
-               },
-             );
-           }
+           builder: (context, state)=>const OffLinePage(),
        ),
        GoRoute(
-         path: '/detail/:category',
+         path: '/detail/:id',
          name: 'Detail',
-         pageBuilder: (context, state) {
+         builder: (context, state) {
+           final id = state.params['id']!;
 
-
-           Category category = Category.fromJson(jsonDecode(state
-               .params['category']!));
-
-           return CustomTransitionPage(
-             key: state.pageKey,
-             child:  DetailPage(category: category),
-             transitionsBuilder: (context, animation, secondaryAnimation, child) {
-               return FadeTransition(
-                 opacity:
-                 CurveTween(curve: Curves.easeInQuad).animate(animation),
-                 child: child,
-               );
-             },
-           );
-
+           return DetailPage(id: int.parse(id));
          },
        ),
 
@@ -183,7 +148,7 @@ class MyApp extends StatelessWidget {
       );
 
     },
-    routerConfig: router,
+        routerConfig: router,
     ));
     }
 
