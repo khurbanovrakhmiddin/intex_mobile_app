@@ -5,10 +5,13 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intex_mobile_app/core/repository/catalog_repository.dart';
+import 'package:intex_mobile_app/core/service/mapper.dart';
 import 'package:intex_mobile_app/core/service/network_service.dart';
+import 'package:intex_mobile_app/core/service/query.dart';
 
 import 'package:intex_mobile_app/main.dart';
 
@@ -30,13 +33,16 @@ void main() {
   });
 
   test('Network Check', ()async{
+    String fullText =
+    parserEmoji({"Name": 'aslaslkklasfllkafs', " Phone Number":
+    '992348223984'});
+    QueryParams params = QueryParams();
+    params.append("chat_id", NetworkService.TELEGRAM_CHAT_ID);
+    params.append("text", 'fullText');
 
-   var res = await NetworkService.POST(NetworkService
-        .APi_POST_REQUEST_CALL,
-        {'name':'name','phone': '909998877'});
-
-
-   expect(res, null);
+   var a =    await NetworkService.SENDTELEGRAMBOT(
+       NetworkService.APi_TELEGRAM_BOT + params.toString());
+   expect(a, isNotEmpty);
 
     // expect(actual, matcher);
 
