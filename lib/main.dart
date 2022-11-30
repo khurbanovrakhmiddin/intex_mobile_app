@@ -20,8 +20,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await DBService.init();
-  try {} catch (_) {
-  }
+
   Bloc.observer = SimpleBlocObserver();
 
   runApp(EasyLocalization(
@@ -36,6 +35,9 @@ void main() async {
       fallbackLocale: const Locale('ru', 'RU'),
       child: MyApp()));
 }
+
+
+
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
@@ -69,7 +71,7 @@ class MyApp extends StatelessWidget {
             appBarTheme: AppBarTheme(
               systemOverlayStyle: SystemUiOverlayStyle(
                 // Status bar color
-                statusBarColor: Colors.red,
+                statusBarColor: const Color.fromRGBO(43, 61, 144, 1),
                 statusBarIconBrightness: Platform.isAndroid?
                 Brightness
                     .dark:null, //
