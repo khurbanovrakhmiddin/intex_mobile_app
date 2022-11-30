@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intex_mobile_app/core/constants/theme.dart';
 import 'package:intex_mobile_app/core/repository/product_by_status_repository.dart';
@@ -62,7 +65,21 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          theme: light,
+          theme: light.copyWith(
+            appBarTheme: AppBarTheme(
+              systemOverlayStyle: SystemUiOverlayStyle(
+                // Status bar color
+                statusBarColor: Colors.red,
+                statusBarIconBrightness: Platform.isAndroid?
+                Brightness
+                    .dark:null, //
+                // For
+                // Android (dark icons)
+                statusBarBrightness:  Platform.isIOS?
+                Brightness.light:null, // For iOS (dark icons)
+              ),
+            )
+          ),
           builder: (context, child) {
             return ScrollConfiguration(
               behavior: MyBehavior(),
